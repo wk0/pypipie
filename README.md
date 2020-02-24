@@ -1,4 +1,5 @@
 # pypipie
+![](demo.gif)
 
 ## Inspiration
 * A crypto trading engine I worked on for a year and some change. Relied heavily on websocket connections and asyncio. 
