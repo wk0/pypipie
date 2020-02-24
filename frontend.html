@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Leibniz Formula via WebSocket</title>
+    </head>
+    <body>
+        <h1>Leibniz formula for π</h1>
+        <a href="https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80">Wikipedia</a>
+        <table id="piTable">
+        <tr>
+            <th>Series Length</th>
+            <th>π estimate</th>
+        </tr>
+        </table>
+        <script>
+            var ws = new WebSocket("ws://127.0.0.1:5678/");
+            var piTable = document.getElementById('piTable');
+
+            ws.onmessage = function (event) {
+                var payload = JSON.parse(event.data);
+                var newRow = piTable.insertRow(-1);
+                var cellOne = newRow.insertCell();
+                var cellTwo = newRow.insertCell();
+                
+                cellOne.innerHTML = payload['i'];
+                cellTwo.innerHTML = payload['pi'];
+            };
+        </script>
+    </body>
+</html>
+
